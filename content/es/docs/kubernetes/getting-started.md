@@ -19,7 +19,7 @@ termines con esta guía, puede ser un experimento divertido instalar la demo y
 ver cómo todo el monitoreo responde a una carga de trabajo activa.
 
 Si estás buscando comenzar a migrar de Prometheus a OpenTelemetry, o si
-estás interesado en usar el OpenTelemetry Collector para recolectar métricas de Prometheus,
+estás interesado en usar el OpenTelemetry collector para recolectar métricas de Prometheus,
 consulta [Prometheus Receiver](../collector/components/#prometheus-receiver).
 
 ## Visión general
@@ -29,7 +29,7 @@ registros, eventos, métricas para muchos objetos diferentes y los datos generad
 cargas de trabajo.
 
 Para recolectar todos estos datos, utilizaremos el
-[OpenTelemetry Collector](/docs/collector/). El collector tiene muchas herramientas diferentes
+[OpenTelemetry collector](/docs/collector/). El collector tiene muchas herramientas diferentes
 a su disposición que le permiten recolectar eficientemente todos estos datos y
 mejorarlos de maneras significativas.
 
@@ -41,7 +41,7 @@ métricas para nodos, pods y contenedores. La instalación de despliegue del
 collector se utilizará para recolectar métricas para el clúster y eventos.
 
 Para instalar el collector, utilizaremos el
-[OpenTelemetry Collector Helm chart](../helm/collector/), que viene con algunas
+[OpenTelemetry collector Helm chart](../helm/collector/), que viene con algunas
 opciones de configuración que facilitarán la configuración del collector. Si no estás
 familiarizado con Helm, consulta [el sitio del proyecto Helm](https://helm.sh/). Si
 estás interesado en usar un operador de Kubernetes, consulta
@@ -62,7 +62,7 @@ kind create cluster
 ```
 
 Asumiendo que ya tienes [Helm instalado](https://helm.sh/docs/intro/install/),
-Agregue el gráfico de timón de OpenTelemetry Collector para que pueda instalarse
+Agregue el gráfico de timón de OpenTelemetry collector para que pueda instalarse
 más tarde.
 
 ```sh
@@ -72,7 +72,7 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 ## Recolector Daemonset
 
 El primer paso para recopilar la telemetría de Kubernetes es implementar un
-daemonset instancia del Colector de telemetría OpenTelemetry para recopilar
+daemonset instancia del collector de telemetría OpenTelemetry para recopilar
 telemetría relacionada con nodos y cargas de trabajo que se ejecutan en esos
 nodos. Se utiliza un daemonset para garantizar que esto La instancia del
 collector está instalada en todos los nodos. Cada instancia del El collector
@@ -99,7 +99,7 @@ El
 es la mejor solución para recopilar trazas, métricas y registros en el
 [OTLP format](/docs/specs/otel/protocol/). Si usted está emitiendo la aplicación
 La telemetría en otro formato, hay una buena posibilidad de que
-[the Collector has a receiver for it](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver),
+[the collector has a receiver for it](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver),
 pero para este tutorial asumiremos que la telemetría está formateada en OTLP.
 
 Aunque no es un requisito, es una práctica común para las aplicaciones que se
@@ -198,7 +198,7 @@ helm install otel-collector open-telemetry/opentelemetry-collector --values <rut
 Ahora debería tener una instalación de daemonset del Colector de telemetría
 abierta Ejecutándose en el clúster recopilando telemetría de cada nodo.
 
-## Deployment Collector
+## Deployment collector
 
 El siguiente paso para recopilar la telemetría de Kubernetes es implementar una
 implementación instancia del Coleccionista para reunir telemetría relacionada
@@ -236,8 +236,8 @@ importante es recoger Eventos de Kubernetes.
 
 ---
 
-El gráfico de timón de OpenTelemetry Collector optimiza la configuración de
-todos los estos componentes en una instalación de implementación del Collector.
+El gráfico de timón de OpenTelemetry collector optimiza la configuración de
+todos los estos componentes en una instalación de implementación del collector.
 También Cuide todos los detalles específicos de Kubernetes, como RBAC y
 montajes.
 
